@@ -1,11 +1,14 @@
 import React from 'react'
 import Logo from '../SubComps/Logo'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Header() {
 
+  const authStatus = useSelector( (state) => state.auth.status)
   const navigate = useNavigate()
-
+  
   const navItems = [
     {
       name : "Home",
@@ -15,20 +18,20 @@ function Header() {
     {
       name : "Store",
       nav : "/store",
-      active : true
+      active : !authStatus
     },  {
       name : "About",
       nav : "/about",
-      active : true
+      active : !authStatus
     },  {
       name : "Contact",
       nav : "/",
-      active : true
+      active : !authStatus
     },
     {
       name : "Cart",
       nav : "/cart",
-      active : true
+      active : !authStatus
     }
   ]
 
@@ -50,6 +53,7 @@ function Header() {
         ): null
         )}
         </ul>
+        
       </div>
     </div>
   )
