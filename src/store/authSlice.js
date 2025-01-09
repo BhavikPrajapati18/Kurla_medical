@@ -14,7 +14,7 @@ import { createSlice } from "@reduxjs/toolkit"
           userData = action.payload.userData
       } ,
       logout : ( state , action ) => {
-        status.state = false,
+        state.status = false,
         userData = null
       } ,
     }
