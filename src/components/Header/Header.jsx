@@ -52,6 +52,7 @@ function Header() {
             ) : null
           )}
         </ul>
+        <h1 onClick={()=> navigate('/cart')} >Cart</h1>
         <Logout />
       </div>
     </div>

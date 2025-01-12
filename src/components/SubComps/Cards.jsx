@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import products from '../../config.json'
+import { addCart } from '../../store/cartSlice'
+import { useDispatch } from 'react-redux'
+
 
 function Cards() {
 
   // TODO : cart function
+  const dispatch = useDispatch()
 
   return (
     <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 md:gap-7 lg:grid-cols-4'> 
-      { products.map( (product , index) => ( 
+      { products.map( (product) => ( 
       <div className="rounded-2xl border border-blue-100 bg-white p-[6px]">
     <div className="relative flex h-[240px] w-full items-center justify-center rounded-xl bg-[#F6DAB0] p-4">
       <img
@@ -45,7 +49,7 @@ function Cards() {
           {/* <BadgeInfo color="#C9C9C9" /> */}
         </button>
         <button
-          // onClick={handleAddToCart}
+          onClick={()=> dispatch(addCart(product))}
           className="w-full rounded-md bg-blue-50 py-[6px] font-medium text-[#1C7690] hover:bg-[#e1e2e6] focus:outline-[#e1e2e6]"
         >
           Add to cart
