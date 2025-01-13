@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import authService from "../appwriteService/auth";
+import {login} from '../store/authSlice'
+import { Link } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
@@ -16,11 +18,10 @@ function Login() {
     setError("");
     try {
       const session = await authService.login(data);
-
       if (session) {
-        const userData = await authService.userAcitve();
-        if (userData) dispatch(login(userData));
-        navigate("/");
+          const userData = await authService.userAcitve();
+          if (userData) dispatch(login(userData));
+          navigate("/");
       }
     } catch (error) {
       setError(error.message);
@@ -50,6 +51,7 @@ function Login() {
             </p>
             <div class="w-full flex-1 mt-8">
               <div class="mx-auto max-w-xs">
+                {error && <p className="mt-2 text-center text-base text-black/60">{error}</p>}
                 <form onSubmit={handleSubmit(Login)}>
                   <div>
                     <Input
@@ -83,7 +85,6 @@ function Login() {
                     />
 
                     <Button
-                      label={"Login"}
                       type="submit"
                       className="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     >

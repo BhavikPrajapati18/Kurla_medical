@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { login } from "../store/authSlice";
 
 function Signin() {
   const navigate = useNavigate();

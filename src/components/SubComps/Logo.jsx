@@ -1,9 +1,9 @@
 import React from 'react'
-import KurlaLogo from '../../assets/kurla-logo2.png'
+import KurlaLogo from '../../assets/logo.png'
 
 function Logo({width = "100px"}) {
   return (
-      <KurlaLogo/>
+      <img src={KurlaLogo} alt="" />
     )
 }
 
