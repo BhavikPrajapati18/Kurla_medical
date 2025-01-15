@@ -1,78 +1,134 @@
-import React from 'react'
-import { Container, Input, Button } from "../components";
-import { useForm } from 'react-hook-form';
+import React from "react";
 
-function ContactUs() {
-
-  const [register , handleSubmit] = useForm();
+function Contact() {
   return (
-    <div class="mx-auto max-w-xs">
-      <Container>
-        <div>
-          <Input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-            {...register("email", {
-              required: true,
-              validate: {
-                matchPatern: (value) =>
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                  "Email address must be a valid address",
-              },
-            })}
-          />
-
-          <Input
-            type="name"
-            name="name"
-            placeholder="Enter your Name"
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-            {...register("name", {
-              required: true,
-              minLength: {
-                value: 6,
-                message: "Enter Your Full Name",
-              },
-            })}
-          />
-          <Input
-            type="name"
-            name="name"
-            placeholder="Problem ?"
-            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-            {...register("name", {
-              required: true,
-              minLength: {
-                value: 10,
-                message: "!!",
-              },
-            })}
-          />
-
-          <Button
-            label={"Submit"}
-            type="submit"
-            className="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-          >
-            <svg
-              class="w-6 h-6 -ml-2"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-              <circle cx="8.5" cy="7" r="4" />
-              <path d="M20 8v6M23 11h-6" />
-            </svg>
-          </Button>
+    <div className="bg-[#f9fafb] min-h-screen py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold text-[#1C7690] mb-4">Contact Us</h1>
+          <p className="text-lg text-gray-700">
+            Have questions? We’re here to help. Send us a message or visit us at our store.
+          </p>
         </div>
-      </Container>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Contact Information */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-semibold text-[#1C7690] mb-6">Get in Touch</h2>
+
+            {/* Contact Details */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Address</h3>
+                <p className="text-gray-600">
+                  123 Business Ave, Suite 100<br />
+                  New York, NY 10001
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Contact Numbers</h3>
+                <p className="text-gray-600">
+                  Phone: (555) 123-4567<br />
+                  Emergency: (555) 987-6543
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Email</h3>
+                <p className="text-gray-600">info@kurlamedical.com</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
+                <p className="text-gray-600">
+                  Monday - Friday: 9:00 AM - 9:00 PM<br />
+                  Saturday: 10:00 AM - 6:00 PM<br />
+                  Sunday: 10:00 AM - 4:00 PM
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-semibold text-[#1C7690] mb-6">Send us a Message</h2>
+
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#1C7690] focus:border-[#1C7690]"
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#1C7690] focus:border-[#1C7690]"
+                  placeholder="john@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#1C7690] focus:border-[#1C7690]"
+                  placeholder="(555) 123-4567"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-[#1C7690] focus:border-[#1C7690]"
+                  placeholder="How can we help you?"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#1C7690] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#165d75] transition duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Map Section */}
+        {/* <div className="mt-12">
+          <div className="bg-[#e6f2f5] w-full h-64 rounded-lg">
+            <div className="w-full h-full flex items-center justify-center text-gray-500">
+              Map will be integrated here
+            </div>
+          </div>
+        </div> */}
+      </div>
     </div>
   );
 }
 
-export default ContactUs
+export default Contact;

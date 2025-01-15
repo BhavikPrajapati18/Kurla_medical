@@ -3,7 +3,7 @@
       "id": 1,
       "title" : "Biotin 10000mcg",
       "image":"src/assets/products/omnigel.webp",
-      "price": "MRP:₹402.5",
+      "price": "402.5",
       "prv_price": "659",
       "description": "Pharmeasy Biotin 10000mcg - For Hair, Skin & Nails - Bottle Of 60"
     },
@@ -11,7 +11,7 @@
       "id": 2,
       "title" : "Calcimax Forte Plus",
       "image": "src/assets/products/calcimax-forte.webp",
-      "price": "MRP:₹291.9",
+      "price": "291.9",
       "prv_price": "313",
       "description": "Calcimax Forte Plus Strip Of 30 Tablets"
     }, 
@@ -19,7 +19,7 @@
       "id": 3,
       "title" : "Cerave Hydrating",
       "image": "src/assets/products/cerave-hydrating-non-foaming-daily-facial-cleanser-for-normal-to-dry-skin-88ml-6.01-1701425365.webp",
-      "price": "MRP:₹299.25",
+      "price": "299.25",
       "prv_price": "315",
       "description": "Cerave Hydrating Non-Foaming Daily Facial Cleanser For Normal To Dry Skin - 88ml"
     },
@@ -27,7 +27,7 @@
       "id": 4,
       "title" : "Crocin 650 ",
       "image": "src/assets/products/crocin-650mg.webp",
-      "price": "MRP:₹33.76",
+      "price": "33.76",
       "prv_price": "40",
       "description": "Crocin 650 Strip Of 15 Tablets"
     },
@@ -35,7 +35,7 @@
       "id": 5,
       "title" : "Dolo Paracetamol 650mg",
       "image": "src/assets/products/dolo-650mg.webp",
-      "price": "MRP:₹29.71",
+      "price": "29.71",
       "prv_price": "35.76",
       "description": "Dolo Paracetamol 650mg Strip Of 15 Tablets"
     }, 
@@ -43,7 +43,7 @@
       "id": 6,
       "title" : "Aloe Vera Juice With Pulp",
       "image": "src/assets/products/everherb-by-pharmeasy-aloe-vera-juice-with-pulp-rejuvenates-skin-hair-1-litre-bottle-2-1723874827.webp",
-      "price": "MRP:₹359.1",
+      "price": "359.1",
       "prv_price": "399",
       "description": "Everherb (By Pharmeasy) Aloe Vera Juice With Pulp - Rejuvenates Skin & Hair - 1 Litre Bottle"
     },
@@ -51,7 +51,7 @@
       "id": 7,
       "title" : "Anti Acne Serum",
       "image": "src/assets/products/good-skyn-clinic-anti-acne-serum-2-salicylic-acid-face-serum-for-blackheads-whiteheads-30ml-6.1-1715761082.webp",
-      "price": "MRP:₹119.8",
+      "price": "119.8",
       "prv_price": "599",
       "description": "Good Skyn Clinic Anti Acne Serum , 2% Salicylic Acid Face Serum For Blackheads & Whiteheads (30ml)"
     },
@@ -59,77 +59,77 @@
       "id": 8,
       "title" : "Uv Protect Sunscreen",
       "image": "src/assets/products/good-skyn-clinic-uv-protect-sunscreen-aqua-gel-spf-30-with-multivitamins-50gm-6.1-1724399115.webp",
-      "price": "MRP:₹129.8",
+      "price": "129.8",
       "prv_price": "649",
       "description": "Good Skyn Clinic Uv Protect Sunscreen Aqua Gel Spf-30+ With Multivitamins 50gm"
     },{
       "id": 9,
       "title" : "Himalaya Liv.52",
       "image": "src/assets/products/himalaya.webp",
-      "price": "MRP:₹230.3",
+      "price": "230.3",
       "prv_price": "245",
       "description": "Himalaya Liv.52 Ds Tablets - 60'S"
     },{
       "id": 10,
       "title" : "Liveasy Care Ultra Sanitary Pads",
       "image": "src/assets/products/liveasy-care-ultra-sanitary-pads-14-xxl-pads-soft-rash-free-leak-lock-technology-2-1696577292.webp",
-      "price": "MRP:₹143.65",
+      "price": "143.65",
       "prv_price": "169",
       "description": "Liveasy Care Ultra Sanitary Pads | 14 Xxl Pads | Soft & Rash Free | Leak-Lock Technology"
     },{
       "id": 11,
       "title" : "Neurobion Forte",
       "image": "src/assets/products/neurobion.webp",
-      "price": "MRP:₹38.98",
+      "price": "38.98",
       "prv_price": "41.91",
       "description": "Neurobion Forte Vitamin B12 Tablet 30'S"
     },{
       "id": 12,
       "title" : "Omnigel Gel",
       "image": "src/assets/products/omnigel.webp",
-      "price": "MRP:₹259.94",
+      "price": "259.94",
       "prv_price": "279.5",
       "description": "Omnigel Gel 75gm"
     },{
       "id": 13,
       "title" : "Refresh Tears",
       "image": "src/assets/products/refresh-tears-05-bottle-of-10ml-eye-drops-1-1671740741.webp",
-      "price": "MRP:₹128.01",
+      "price": "128.01",
       "prv_price": "137.64",
       "description": "Refresh Tears 0.5% Bottle Of 10ml Eye Drops"
     },{
       "id": 14,
       "title" : "Saridon Advance",
       "image": "src/assets/products/saridon-advance.webp",
-      "price": "MRP:₹53",
+      "price": "53",
       "prv_price": "55",
       "description": "Saridon Advance For 5 In 1 Pain Relief Strip Of 10 Tablets"
     },{
       "id": 15,
       "title" : "Shelcal 500mg",
       "image": "src/assets/products/shelcal.webp",
-      "price": "MRP:₹129.87",
+      "price": "129.87",
       "prv_price": "144.3",
       "description": "Shelcal 500mg Strip Of 15 Tablets"
     },{
       "id":  16,
       "title" : "Venusia Max Intensive Moisturizing Cream",
       "image": "src/assets/products/venusia-max-intensive-moisturizing-cream-for-dry-to-very-dry-skin-repairs-smoothens-skin-150g-2-1686118239.webp",
-      "price": "MRP:₹549",
+      "price": "549",
       "prv_price": "610",
       "description": "Venusia Max Intensive Moisturizing Cream For Dry To Very Dry Skin Repairs & Smoothens Skin 150g"
     },{
       "id": 17,
       "title" : "Volini Pain Relief Gel",
       "image": "src/assets/products/volini.webp",
-      "price": "MRP:₹238.5",
+      "price": "238.5",
       "prv_price": "265",
       "description": "Volini Pain Relief Gel Tube Of 75 G"
     },{
       "id": 18,
       "title" : "Zandu Pain Relief Balm",
       "image": "src/assets/products/zandu.webp",
-      "price": "MRP:₹165.6",
+      "price": "165.6",
       "prv_price": "180",
       "description": "Zandu Pain Relief Balm Bottle Of 50 Ml"
     }
