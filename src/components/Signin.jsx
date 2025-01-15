@@ -42,10 +42,12 @@ function Signin() {
           <div class="mt-12 flex flex-col items-center">
             <div class="w-full flex-1 mt-8">
               <div class="mx-auto max-w-xs">
-                {error && <p className="text-red-500 text-sm mt-2"> {error} </p>}
+                {error && (
+                  <p className="text-red-500 text-sm mt-2"> {error} </p>
+                )}
                 <form onSubmit={handleSubmit(Signin)}>
                   <div>
-                  <Input
+                    <Input
                       type="name"
                       name="name"
                       placeholder="Enter your name"

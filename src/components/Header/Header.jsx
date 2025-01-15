@@ -21,7 +21,7 @@ function Header() {
       active: !authStatus,
     }, {
       name: "Signin",
-      nav: "/Signin",
+      nav: "/signin",
       active: !authStatus,
     },
     {
