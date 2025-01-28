@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import {Input , Button , Logo} from "./index";
+import { Input, Button, Logo } from "./index";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import authService from "../appwriteService/auth";
-import {login} from '../store/authSlice'
+import { login } from "../store/authSlice";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -19,9 +19,9 @@ function Login() {
     try {
       const session = await authService.login(data);
       if (session) {
-          const userData = await authService.userAcitve();
-          if (userData) dispatch(login(userData));
-          navigate("/");
+        const userData = await authService.userAcitve();
+        if (userData) dispatch(login(userData));
+        navigate("/");
       }
     } catch (error) {
       setError(error.message);
@@ -34,7 +34,7 @@ function Login() {
       <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div>
-            <Link to='/'>
+            <Link to="/">
               <Logo className="w-mx-auto" />
             </Link>
           </div>
@@ -51,7 +51,11 @@ function Login() {
             </p>
             <div class="w-full flex-1 mt-8">
               <div class="mx-auto max-w-xs">
-                {error && <p className="mt-2 text-center text-base text-black/60">{error}</p>}
+                {error && (
+                  <p className="mt-2 text-center text-base text-black/60">
+                    {error}
+                  </p>
+                )}
                 <form onSubmit={handleSubmit(Login)}>
                   <div>
                     <Input
