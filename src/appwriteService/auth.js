@@ -40,11 +40,12 @@ export class AuthService {
 
   async userAcitve() {
     try {
-      return await this.account.get();
+      const user = await this.account.get();
+      return user;
     } catch (error) {
       console.log("userActive : ", error);
+      return null;
     }
-    return null;
   }
 
   async logout() {

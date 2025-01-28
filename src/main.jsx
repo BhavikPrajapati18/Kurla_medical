@@ -16,20 +16,62 @@ import Home from "./pages/Home.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import Login from "./pages/Login.jsx";
 import Signin from "./pages/Signin.jsx";
-import { Cart } from "./components/index.js";
+import { Cart, AuthLayout } from "./components";
 import SingleProduct from "./pages/SingleProduct.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App/>}>
+    <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
-      <Route path="/store" element={<Store />} />
-      <Route path="/about" element={<AboutUs />} />
-      <Route path="/contact" element={<ContactUs />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signin" element={<Signin />} />
+      <Route
+        path="/login"
+        element={
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/signin"
+        element={
+          <AuthLayout authentication={false}>
+            <Signin />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/store"
+        element={
+          <AuthLayout authentication>
+            <Store />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/about"
+        element={
+          <AuthLayout authentication>
+            <AboutUs />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/contact"
+        element={
+          <AuthLayout authentication>
+            <ContactUs />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/cart"
+        element={
+          <AuthLayout authentication>
+            <Cart />
+          </AuthLayout>
+        }
+      />
       <Route path="/product/:id" element={<SingleProduct />} />
-      <Route path="/cart" element={<Cart />} />
     </Route>
   )
 );
