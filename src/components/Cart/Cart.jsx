@@ -4,7 +4,7 @@ import { removeFromCart } from "../../store/cartSlice";
 import { ShoppingCart } from "lucide-react";
 
 const Cart = () => {
-  const { cart } = useSelector((state) => state.user);
+  const { cart, quantity } = useSelector((state) => state.user);
   console.log(cart);
 
   const dispatch = useDispatch();
@@ -31,6 +31,12 @@ const Cart = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <h1 className="mb-6 text-2xl font-bold text-gray-800">Your Cart</h1>
+
+      {/* Display Quantity */}
+      <div className="mb-6 text-xl font-medium text-gray-700">
+        Total Items: {quantity}
+      </div>
+
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {cart.map((product) => (
           <div

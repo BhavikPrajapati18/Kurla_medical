@@ -25,7 +25,7 @@ function Header() {
     { name: "Store", icon: <Store />, nav: "/store", active: authStatus },
     { name: "About", icon: <BookText />, nav: "/about", active: authStatus },
     { name: "Contact", icon: <Contact />, nav: "/contact", active: authStatus },
-    { name: <ShoppingCart />, nav: "/cart", active: authStatus },
+    { name: "Cart", icon: <ShoppingCart />, nav: "/cart", active: authStatus },
   ];
 
   return (
