@@ -85,7 +85,7 @@ function Header() {
 
           {/* Mobile Navigation */}
           <div
-            className={`lg:hidden absolute z-50 w-full bg-white shadow-lg transition-all duration-300 ease-in-out ${
+            className={`lg:hidden absolute z-50 w-full bg-white shadow-lg transition-all duration-300 ease-in-out rounded-b-md ${
               isMenuOpen
                 ? "opacity-100 visible max-h-screen"
                 : "opacity-0 invisible max-h-0"
