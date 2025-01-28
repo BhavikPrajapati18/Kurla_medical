@@ -4,7 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Logout from "./LogoutBtn";
 import { Container } from "../index";
-import { Home, ShoppingCart, Store, Contact, UserPlus, LogIn, BookText } from "lucide-react";
+import {
+  Home,
+  ShoppingCart,
+  Store,
+  Contact,
+  UserPlus,
+  LogIn,
+  BookText,
+} from "lucide-react";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -13,9 +21,9 @@ function Header() {
   const navItems = [
     { name: "Home", icon: <Home />, nav: "/", active: true },
     { name: "Login", icon: <LogIn />, nav: "/login", active: !authStatus },
-    { name: "Signin", icon: <UserPlus/> , nav: "/signin", active: !authStatus },
+    { name: "Signin", icon: <UserPlus />, nav: "/signin", active: !authStatus },
     { name: "Store", icon: <Store />, nav: "/store", active: authStatus },
-    { name: "About", icon: <BookText/> ,nav: "/about", active: authStatus },
+    { name: "About", icon: <BookText />, nav: "/about", active: authStatus },
     { name: "Contact", icon: <Contact />, nav: "/contact", active: authStatus },
     { name: <ShoppingCart />, nav: "/cart", active: authStatus },
   ];
@@ -25,7 +33,10 @@ function Header() {
       <Container>
         <nav className="flex items-center py-4">
           {/* Logo Section */}
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate("/")}>
+          <div
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <Logo />
           </div>
 

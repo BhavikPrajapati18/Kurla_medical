@@ -33,9 +33,9 @@ function Signin() {
     <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div class="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-          <div>
+          <div className="mb-2 flex justify-center">
             <Link to="/">
-              <Logo className="w-mx-auto" />
+              <Logo className="inline-block w-full " />
             </Link>
           </div>
 
@@ -56,11 +56,12 @@ function Signin() {
                         required: true,
                       })}
                     />
+
                     <Input
                       type="email"
                       name="email"
                       placeholder="Enter your email"
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       {...register("email", {
                         required: true,
                         validate: {
