@@ -2,8 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import products from "../../config.json";
 import { useDispatch } from "react-redux";
-import { addCart } from '../../store/cartSlice'
-
+import { addCart } from "../../store/cartSlice";
 
 const SingleProduct = () => {
   const { id } = useParams(); // Get the ID from the URL
@@ -17,13 +16,14 @@ const SingleProduct = () => {
   return (
     <div className="max-w-4xl mx-auto py-28 ">
       {/* Product Info Section */}
-      <div className="flex flex-col md:flex-row justify-between items-center bg-white p-6 rounded-lg shadow-lg">
+      <div className="flex flex-col md:flex-row justify-between  bg-white p-6 rounded-lg shadow-lg">
         {/* Product Details */}
         <div className="w-full md:w-1/2 md:pl-8">
           {/* Product Title */}
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">
-            {product.name}
+            {product.title}
           </h1>
+          <img src={product.image} alt="" />
 
           {/* Product Description */}
           <p className="text-gray-600 text-lg mb-6">
