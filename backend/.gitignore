@@ -1,7 +1,5 @@
 ### dotenv ###
 .env
-
-
 # Logs
 logs
 *.log
