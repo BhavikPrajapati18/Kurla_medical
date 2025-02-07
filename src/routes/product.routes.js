@@ -5,13 +5,25 @@ import {
   getAllProduct,
   updateProduct,
 } from "../controllers/products.controllers.js";
+import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
+router.route("/products/create").post(
+  upload.fields([
+    {
+      name: "image",
+      maxCount: 1,
+    },
+  ]),
+  createProduct
+);
+
 router.route("/products").get(getAllProduct);
 
-router.route("/products/create").post(createProduct);
-
-router.route("/products/:id").put(updateProduct).delete(deleteProduct);
+router
+  .route("/products/:id")
+  .put(upload.single("image"), updateProduct)
+  .delete(deleteProduct);
 
 export default router;
