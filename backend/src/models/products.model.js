@@ -29,18 +29,10 @@ const productScheme = new mongoose.Schema(
       type: String,
       required: [true, " PLease enter the product category"],
     },
-    image: [
-      {
-        public_id: {
-          type: String,
-          required: true,
-        },
-        url: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    image: {
+      type: String,
+      required: [true, " Please upload the product image "],
+    },
     stock: {
       type: Number,
       required: [true, " Please enter product stock"],
