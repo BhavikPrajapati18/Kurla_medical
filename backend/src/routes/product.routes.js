@@ -9,15 +9,7 @@ import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
-router.route("/products/create").post(
-  upload.fields([
-    {
-      name: "image",
-      maxCount: 1,
-    },
-  ]),
-  createProduct
-);
+router.route("/products/create").post(upload.single("image"), createProduct);
 
 router.route("/products").get(getAllProduct);
 

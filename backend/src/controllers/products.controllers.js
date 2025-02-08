@@ -1,12 +1,15 @@
 import { Product } from "../models/products.model.js";
 import { ApiError } from "../utils/ApiError.js";
+import { ApiFeature } from "../utils/ApiFeatures.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asycnHandler } from "../utils/AsycnHandler.js";
 import { uploadCloudinary, cloudinary } from "../utils/Cloudinary.js";
 
 //create product
 export const createProduct = asycnHandler(async (req, res, next) => {
-  const imagelocalpath = req.files?.image[0]?.path;
+  // console.log("Received file:", req.file);
+
+  const imagelocalpath = req.file?.path;
 
   if (!imagelocalpath) {
     throw new ApiError(500, "Please upload product image properly !!");
@@ -34,7 +37,14 @@ export const createProduct = asycnHandler(async (req, res, next) => {
 
 //get product
 export const getAllProduct = asycnHandler(async (req, res, next) => {
-  const product = await Product.find(req.params.id);
+  const resultPerPage = 5;
+  const ProductCount = await Product.countDocuments();
+  const apiFeature = new ApiFeature(Product.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
+  const product = await apiFeature.query;
 
   if (!product) {
     throw new ApiError(404, " Product not found or Product does not exists ");
@@ -42,7 +52,13 @@ export const getAllProduct = asycnHandler(async (req, res, next) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, product, " Product found succesfully "));
+    .json(
+      new ApiResponse(
+        200,
+        product,
+        `Product found succesfully , Total Products Count ${ProductCount}`
+      )
+    );
 });
 
 //update product
