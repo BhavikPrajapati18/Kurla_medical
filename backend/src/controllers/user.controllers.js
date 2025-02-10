@@ -72,16 +72,7 @@ const registerUser = asycnHandler(async (req, res) => {
 });
 
 const loginUser = asycnHandler(async (req, res) => {
-  // User loggin kaise karege
-
-  // req body -> data
-  // username or email
-  //find the user
-  //password check
-  //access and referesh token
-  //send cookie
-
-  //Getting the data from req.body
+  console.log("req.body Data :-", req.body);
   const { username, email, password } = req.body;
   console.log("email", email, "password", password);
 
@@ -152,7 +143,7 @@ const logoutUser = asycnHandler(async (req, res) => {
       new: true,
     }
   );
-  console.log(req);
+  // console.log(req);
   const options = {
     httpOnly: true,
     secure: true,
