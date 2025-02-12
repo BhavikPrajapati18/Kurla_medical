@@ -6,7 +6,7 @@ import { asycnHandler } from "../utils/AsycnHandler.js";
 import { uploadCloudinary, cloudinary } from "../utils/Cloudinary.js";
 
 //create product
-export const createProduct = asycnHandler(async (req, res, next) => {
+export const createProduct = asycnHandler(async (req, res) => {
   // console.log("Received file:", req.file);
 
   const imagelocalpath = req.file?.path;
@@ -36,7 +36,7 @@ export const createProduct = asycnHandler(async (req, res, next) => {
 });
 
 //get product
-export const getAllProduct = asycnHandler(async (req, res, next) => {
+export const getAllProduct = asycnHandler(async (req, res) => {
   const resultPerPage = 5;
   const ProductCount = await Product.countDocuments();
   const apiFeature = new ApiFeature(Product.find(), req.query)
@@ -62,7 +62,7 @@ export const getAllProduct = asycnHandler(async (req, res, next) => {
 });
 
 //update product
-export const updateProduct = asycnHandler(async (req, res, next) => {
+export const updateProduct = asycnHandler(async (req, res) => {
   let updatedData = { ...req.body };
 
   if (req.file) {
@@ -98,7 +98,7 @@ export const updateProduct = asycnHandler(async (req, res, next) => {
 });
 
 //delete product
-export const deleteProduct = asycnHandler(async (req, res, next) => {
+export const deleteProduct = asycnHandler(async (req, res) => {
   // Find the product first
   console.log(uploadCloudinary);
   // console.log(product.image);

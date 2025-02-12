@@ -6,16 +6,34 @@ import {
   updateProduct,
 } from "../controllers/products.controllers.js";
 import { upload } from "../middleware/multer.middleware.js";
+import { verifyJWT, authorizeRoles } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
-router.route("/products/create").post(upload.single("image"), createProduct);
-
+//Get All Products
 router.route("/products").get(getAllProduct);
 
+//ADMIN
+//Create Product
 router
-  .route("/products/:id")
-  .put(upload.single("image"), updateProduct)
-  .delete(deleteProduct);
+  .route("/admin/products/create")
+  .post(
+    upload.single("image"),
+    verifyJWT,
+    authorizeRoles("admin"),
+    createProduct
+  );
+
+// Update Product
+//Delete Product
+router
+  .route("/admin/products/:id")
+  .put(
+    upload.single("image"),
+    verifyJWT,
+    authorizeRoles("admin"),
+    updateProduct
+  )
+  .delete(deleteProduct, verifyJWT, authorizeRoles("admin"));
 
 export default router;

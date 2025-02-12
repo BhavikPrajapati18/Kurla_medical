@@ -32,3 +32,25 @@ export const verifyJWT = asycnHandler(async (req, res, next) => {
     throw new ApiError(401, error?.message || "Invalid access to token");
   }
 });
+
+export const authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+    try {
+      // Ensure req.user exists before checking its role
+      if (!req.user || !roles.includes(req.user.role)) {
+        return next(
+          new ApiError(
+            `Role: ${
+              req.user?.role || "undefined"
+            } is not allowed to access this resource`,
+            403
+          )
+        );
+      }
+
+      next();
+    } catch (error) {
+      next(new ApiError(500, "Something went wrong in role authorization"));
+    }
+  };
+};

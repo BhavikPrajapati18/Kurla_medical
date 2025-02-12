@@ -241,7 +241,7 @@ const getCurrentUser = asycnHandler(async (req, res) => {
 });
 
 const updateAccountDetails = asycnHandler(async (req, res) => {
-  const { fullName, email } = req.body;
+  const { fullName, email, role } = req.body;
 
   const user = await User.findByIdAndUpdate(
     req.user?._id,
@@ -249,6 +249,7 @@ const updateAccountDetails = asycnHandler(async (req, res) => {
       $set: {
         fullName: fullName,
         email: email,
+        role: role,
       },
     },
     {
@@ -261,66 +262,6 @@ const updateAccountDetails = asycnHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Updated the account details"));
 });
 
-// const updateUserAvatar = asycnHandler(async (req, res) => {
-//   const avatarLocalPath = req.file?.path;
-
-//   if (!avatarLocalPath) {
-//     throw new ApiError(400, "Avatar local path not found");
-//   }
-
-//   const avatar = await uploadOnCloudiary(avatarLocalPath);
-
-//   if (!avatar.url) {
-//     throw new ApiError(400, "Avatar didnt got posted on the Cloudnary ");
-//   }
-
-//   const user = await User.findByIdAndUpdate(
-//     req.user?._id,
-//     {
-//       $set: {
-//         avatar: avatar?.url,
-//       },
-//     },
-//     {
-//       new: true,
-//     }
-//   ).select("-password");
-
-//   return res
-//     .status(200)
-//     .json(new ApiResponse(200, user, "Avatar updated successfully"));
-// });
-
-// const updateUserCoverImage = asycnHandler(async (req, res) => {
-//   const coverImageLocalPath = req.file?.path;
-
-//   if (!coverImageLocalPath) {
-//     throw new ApiError(400, "Avatar local path not found");
-//   }
-
-//   const coverImage = await uploadOnCloudiary(coverImageLocalPath);
-
-//   if (!coverImage.url) {
-//     throw new ApiError(400, "Avatar didnt got posted on the Cloudnary ");
-//   }
-
-//   const user = await User.findByIdAndUpdate(
-//     req.user?._id,
-//     {
-//       $set: {
-//         coverImage: coverImage?.url,
-//       },
-//     },
-//     {
-//       new: true,
-//     }
-//   ).select("-password");
-
-//   return res
-//     .status(200)
-//     .json(new ApiResponse(200, user, "CoverImage updated successfully"));
-// });
-
 export {
   registerUser,
   loginUser,
@@ -329,6 +270,4 @@ export {
   changeCurrentPassword,
   getCurrentUser,
   updateAccountDetails,
-  // updateUserAvatar,
-  // updateUserCoverImage,
 };
