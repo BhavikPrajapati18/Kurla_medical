@@ -1,14 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./authSlice";
-import cartSlice from "./cartSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { thunk } from "redux-thunk";
+import { productReducer } from "./reducers/productReducer.js";
+import authSlice from "./authSlice.js";
 
-const initialState = {};
+const reducer = combineReducers({
+  products: productReducer,
+  auth: authSlice,
+});
 
 const store = configureStore({
-  reducer: {
-    auth: authSlice,
-    user: cartSlice,
-  },
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+  devTools: true,
 });
 
 export default store;

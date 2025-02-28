@@ -37,7 +37,7 @@ export const createProduct = asycnHandler(async (req, res) => {
 
 //get product
 export const getAllProduct = asycnHandler(async (req, res) => {
-  const resultPerPage = 5;
+  const resultPerPage = 12;
   const ProductCount = await Product.countDocuments();
   const apiFeature = new ApiFeature(Product.find(), req.query)
     .search()

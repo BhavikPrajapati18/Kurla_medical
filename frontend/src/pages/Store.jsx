@@ -1,14 +1,14 @@
-import React from 'react'
-import { Container , Cards } from '../components'
+import React from "react";
+import { Container, Cards } from "../components";
 
 function Store() {
   return (
     <div>
       <Container>
-        <Cards/>
+        <Cards />
       </Container>
     </div>
-  )
+  );
 }
 
-export default Store
+export default Store;

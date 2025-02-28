@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import products from "../../config.json";
+import React, { useEffect, useState } from "react";
 import { addCart } from "../../store/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BadgeInfo } from "lucide-react";
+import { getProduts } from "../../store/actions/productAction.js";
+
+// 5:44:15 for rating component
+// 5:53 error ka video
 
 function Cards() {
   const dispatch = useDispatch();
@@ -16,6 +19,18 @@ function Cards() {
     setAlert(true);
     setTimeout(() => setAlert(false), 3000); // Hide after 3 seconds
   };
+
+  const { products, loading, productsCount, error } = useSelector(
+    ((state) => state.products) || { products: [] }
+  );
+
+  if (!products || !Array.isArray(products)) {
+    return <p>No products available</p>; // Handle the case when products is undefined
+  }
+
+  useEffect(() => {
+    dispatch(getProduts());
+  }, [dispatch]);
 
   return (
     <div>
@@ -90,16 +105,16 @@ function Cards() {
             {/* Product Details */}
             <div className="p-4 bg-[#f3f8fa]">
               <h3 className="mb-4 text-base font-semibold text-gray-800 line-clamp-2 group-hover:text-[#1C7690]">
-                {product.title}
+                {product.name}
               </h3>
 
               <div className="mb-6 flex items-center gap-2">
                 <span className="text-lg font-bold text-[#FB991C]">
-                  ₹{product.prv_price}
+                  ₹{product.price}
                 </span>
-                {product.price && (
+                {product.pre_price && (
                   <span className="text-sm font-medium text-gray-400 line-through">
-                    ₹{product.price}
+                    ₹{product.pre_price}
                   </span>
                 )}
               </div>
