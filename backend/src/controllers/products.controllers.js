@@ -52,12 +52,21 @@ export const getAllProduct = asycnHandler(async (req, res) => {
 
   return res
     .status(200)
+    .json(new ApiResponse(200, product, `Product found succesfully`));
+});
+
+//get product details
+export const getProductDetails = asycnHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  if (!product) {
+    throw new ApiError(404, " Product details not found !!!! ");
+  }
+
+  return res
+    .status(200)
     .json(
-      new ApiResponse(
-        200,
-        product,
-        `Product found succesfully , Total Products Count ${ProductCount}`
-      )
+      new ApiResponse(200, product, "Product Details found successfully!!!")
     );
 });
 

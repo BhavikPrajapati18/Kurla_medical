@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../../config.json";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../store/cartSlice";
+import { getProdutDetails } from "../../store/actions/productAction.js";
 
 const SingleProduct = () => {
-  const { id } = useParams(); // Get the ID from the URL
-  const product = products.find((item) => item.id === parseInt(id)); // Find product by ID
-
+  const { id } = useParams();
   const dispatch = useDispatch();
+
+  const { product, loading, error } = useSelector(
+    (state) => state.productDetails
+  );
+
+  console.log(" Item.jsx Product details : ", product);
+  useEffect(() => {
+    dispatch(getProdutDetails(id));
+  }, [dispatch, id]);
+
   if (!product) {
     return <p className="text-center text-red-500">Product not found!</p>;
   }
@@ -21,7 +29,7 @@ const SingleProduct = () => {
         <div className="w-full md:w-1/2 md:pl-8">
           {/* Product Title */}
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">
-            {product.title}
+            {product.name}
           </h1>
           <img src={product.image} alt="" />
 

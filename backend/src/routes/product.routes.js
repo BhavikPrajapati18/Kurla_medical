@@ -3,6 +3,7 @@ import {
   createProduct,
   deleteProduct,
   getAllProduct,
+  getProductDetails,
   updateProduct,
 } from "../controllers/products.controllers.js";
 import { upload } from "../middleware/multer.middleware.js";
@@ -12,6 +13,9 @@ const router = Router();
 
 //Get All Products
 router.route("/products").get(getAllProduct);
+
+//Get product details
+router.route("/products/:id").get(getProductDetails);
 
 //ADMIN
 //Create Product

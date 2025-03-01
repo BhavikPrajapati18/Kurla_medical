@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
-  quantity: 0, // Keeping track of quantity
+  quantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -11,14 +11,14 @@ const cartSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       state.cart.push(action.payload);
-      state.quantity += 1; // Increase quantity when an item is added
+      state.quantity += 1;
     },
     removeFromCart: (state, action) => {
       const updatedCart = state.cart.filter(
         (product) => product.id !== action.payload
       );
       state.cart = updatedCart;
-      state.quantity = updatedCart.length; // Update quantity after removing an item
+      state.quantity = updatedCart.length;
     },
   },
 });
