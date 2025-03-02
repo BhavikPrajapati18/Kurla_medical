@@ -118,7 +118,7 @@ function Cards() {
           <option value="supplements">Supplements</option>
         </select>
 
-        {/* Search Input */}
+        {/* Search Box */}
         <input
           className="w-full max-w-md rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:border-[#1C7690] focus:ring-2 focus:ring-[#1C7690] focus:outline-none transition duration-300"
           type="text"
