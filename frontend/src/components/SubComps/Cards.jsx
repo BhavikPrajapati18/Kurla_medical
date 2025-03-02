@@ -14,12 +14,14 @@ function Cards() {
 
   // Alert State
   const [alert, setAlert] = useState(false);
-
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const showAlert = () => {
     setAlert(true);
-    setTimeout(() => setAlert(false), 3000); // Hide after 3 seconds
+    setTimeout(() => setAlert(false), 2000);
   };
 
+  // Products fetching from backend
   const {
     products = [],
     loading,
@@ -36,6 +38,19 @@ function Cards() {
   if (!products || !Array.isArray(products)) {
     return <p>No products available</p>;
   }
+
+  // search filter
+
+  const filterProducts = products.filter((item) => {
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    const matchesCategory = selectedCategory
+      ? item.category.toLowerCase() === selectedCategory.toLowerCase()
+      : true;
+
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div>
@@ -89,10 +104,35 @@ function Cards() {
       )}
 
       {/* Product Cards */}
+      <div className="flex justify-center items-center gap-4 mt-6">
+        {/* Category Dropdown */}
+        <select
+          className="w-40 rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-700 shadow-sm focus:border-[#1C7690] focus:ring-2 focus:ring-[#1C7690] focus:outline-none transition duration-300"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          <option value="Test">Test</option>
+          <option value="Med">Med</option>
+          <option value="personal-care">Personal Care</option>
+          <option value="supplements">Supplements</option>
+        </select>
+
+        {/* Search Input */}
+        <input
+          className="w-full max-w-md rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:border-[#1C7690] focus:ring-2 focus:ring-[#1C7690] focus:outline-none transition duration-300"
+          type="text"
+          value={search}
+          id="search"
+          autoComplete="off"
+          placeholder="Search for products..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-8 px-4">
-        {products.length > 0 ? (
-          products.map((product) => (
+        {filterProducts.length > 0 ? (
+          filterProducts.map((product) => (
             <div className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
               {/* Product Image */}
               <Link key={product._id} to={`/product/${product._id}`}>
