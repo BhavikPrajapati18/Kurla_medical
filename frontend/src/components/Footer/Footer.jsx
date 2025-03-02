@@ -9,21 +9,22 @@ const Footer = () => {
         {/* Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Information */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white">Kurla Medical</h3>
-            <p className="text-sm">
-              Providing high-quality medical supplies and services to ensure the
-              well-being of our community.
-            </p>
-          </div>
-
+          <Link to={`/`}>
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold text-white">Kurla Medical</h3>
+              <p className="text-sm">
+                Providing high-quality medical supplies and services to ensure
+                the well-being of our community.
+              </p>
+            </div>
+          </Link>
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">
               Quick Links
             </h4>
             <ul className="space-y-3">
-              {["Home", "Store", "About", "Contact"].map((link) => (
+              {["Store", "About", "Contact"].map((link) => (
                 <li key={link}>
                   <Link
                     to={`/${link.toLowerCase().replace(" ", "")}`}
