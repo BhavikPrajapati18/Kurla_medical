@@ -27,7 +27,6 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      required: true,
     },
     password: {
       type: String,
@@ -48,7 +47,11 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return await bcrypt.compare(password, this.password);
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (error) {
+    throw new Error("Error comparing password");
+  }
 };
 
 userSchema.methods.generateAccessToken = function () {

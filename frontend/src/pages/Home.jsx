@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
 
   return (
@@ -47,14 +46,14 @@ function Home() {
               </p>
 
               {/* Conditionally render button based on auth status */}
-              {authStatus && (
-                <button
-                  onClick={() => navigate("/store")}
-                  className="inline-flex items-center px-6 py-3 text-base sm:text-lg text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent"
-                >
-                  Shop Now
-                </button>
-              )}
+              {/* {authStatus && ( */}
+              <button
+                onClick={() => navigate("/store")}
+                className="inline-flex items-center px-6 py-3 text-base sm:text-lg text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent"
+              >
+                Shop Now
+              </button>
+              {/* )} */}
             </div>
           </div>
         </Container>

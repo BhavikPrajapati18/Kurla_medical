@@ -6,19 +6,36 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: "user",
+  name: "cart",
   initialState,
   reducers: {
     addCart: (state, action) => {
-      state.cart.push(action.payload);
+      const itemIndex = state.cart.findIndex(
+        (item) => item._id === action.payload._id
+      );
+
+      if (itemIndex >= 0) {
+        // Agar item already cart me hai, toh uski quantity badhao
+        state.cart[itemIndex].quantity += action.payload.quantity;
+      } else {
+        // Nahi hai toh naya item daalo
+        state.cart.push(action.payload);
+      }
+
       state.quantity += 1;
     },
     removeFromCart: (state, action) => {
-      const updatedCart = state.cart.filter(
-        (product) => product.id !== action.payload
+      const existingItem = state.cart.find(
+        (item) => item._id === action.payload
       );
-      state.cart = updatedCart;
-      state.quantity = updatedCart.length;
+
+      if (existingItem.quantity > 1) {
+        existingItem.quantity -= 1;
+      } else {
+        state.cart = state.cart.filter((item) => item._id !== action.payload);
+      }
+
+      state.quantity -= 1;
     },
   },
 });

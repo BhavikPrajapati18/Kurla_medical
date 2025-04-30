@@ -219,7 +219,8 @@ const changeCurrentPassword = asycnHandler(async (req, res) => {
   if (!user) {
     throw new ApiError(400, "Invalid User");
   }
-
+  console.log(oldpassword);
+  console.log(newpassword);
   const isPasswordCorrect = await user.isPasswordCorrect(oldpassword);
 
   if (!isPasswordCorrect) {
@@ -227,7 +228,7 @@ const changeCurrentPassword = asycnHandler(async (req, res) => {
   }
 
   user.password = newpassword;
-  user.save({ validateBeforeSave: true });
+  await user.save({ validateBeforeSave: true });
 
   return res
     .status(200)
@@ -241,12 +242,13 @@ const getCurrentUser = asycnHandler(async (req, res) => {
 });
 
 const updateAccountDetails = asycnHandler(async (req, res) => {
-  const { fullName, email, role } = req.body;
+  const { username, fullName, email, role } = req.body;
 
   const user = await User.findByIdAndUpdate(
     req.user?._id,
     {
       $set: {
+        username: username,
         fullName: fullName,
         email: email,
         role: role,

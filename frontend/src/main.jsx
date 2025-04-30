@@ -18,6 +18,9 @@ import Login from "./pages/Login.jsx";
 import Signin from "./pages/Signin.jsx";
 import { Cart, AuthLayout } from "./components";
 import SingleProduct from "./pages/SingleProduct.jsx";
+import UserOption from "./pages/UserOption.jsx";
+import UpdateProfile from "./pages/UpdateProfile.jsx";
+import UpdatePassword from "./pages/UpdatePassword.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -68,6 +71,30 @@ const router = createBrowserRouter(
         element={
           <AuthLayout authentication>
             <Cart />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <AuthLayout authentication>
+            <UserOption />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/update"
+        element={
+          <AuthLayout authentication>
+            <UpdateProfile />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/change-password"
+        element={
+          <AuthLayout authentication>
+            <UpdatePassword />
           </AuthLayout>
         }
       />

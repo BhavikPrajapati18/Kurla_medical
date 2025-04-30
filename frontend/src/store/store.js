@@ -4,14 +4,15 @@ import {
   productReducer,
   productDetailsReducer,
 } from "./reducers/productReducer.js";
-import authSlice from "./authSlice.js";
-import { userReducer } from "./reducers/userReducer.js";
+import { profileReducer, userReducer } from "./reducers/userReducer.js";
+import cartReducer from "./cartSlice.js";
 
 const reducer = combineReducers({
   products: productReducer,
   productDetails: productDetailsReducer,
   user: userReducer,
-  auth: authSlice,
+  profile: profileReducer,
+  cart: cartReducer,
 });
 
 const store = configureStore({

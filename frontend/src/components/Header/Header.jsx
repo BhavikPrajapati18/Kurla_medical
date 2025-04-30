@@ -14,21 +14,54 @@ import {
   BookText,
   Menu,
   X,
+  User,
 } from "lucide-react";
+import UserOption from "../../pages/UserOption";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const authStatus = useSelector((state) => state.auth.status);
+  const { isAuthentication } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", icon: <Home />, nav: "/", active: true },
-    { name: "Login", icon: <LogIn />, nav: "/login", active: !authStatus },
-    { name: "Signin", icon: <UserPlus />, nav: "/signin", active: !authStatus },
-    { name: "Store", icon: <Store />, nav: "/store", active: authStatus },
-    { name: "About", icon: <BookText />, nav: "/about", active: authStatus },
-    { name: "Contact", icon: <Contact />, nav: "/contact", active: authStatus },
-    { name: "Cart", icon: <ShoppingCart />, nav: "/cart", active: authStatus },
+    {
+      name: "Login",
+      icon: <LogIn />,
+      nav: "/login",
+      active: !isAuthentication,
+    },
+    {
+      name: "Signin",
+      icon: <UserPlus />,
+      nav: "/signin",
+      active: !isAuthentication,
+    },
+    { name: "Store", icon: <Store />, nav: "/store", active: isAuthentication },
+    {
+      name: "About",
+      icon: <BookText />,
+      nav: "/about",
+      active: isAuthentication,
+    },
+    {
+      name: "Contact",
+      icon: <Contact />,
+      nav: "/contact",
+      active: isAuthentication,
+    },
+    {
+      name: "Cart",
+      icon: <ShoppingCart />,
+      nav: "/cart",
+      active: isAuthentication,
+    },
+    {
+      name: "Account",
+      icon: <User />,
+      nav: "/profile",
+      active: isAuthentication,
+    },
   ];
 
   const handleNavigation = (path) => {
@@ -75,11 +108,6 @@ function Header() {
                 ) : null
               )}
               {/* Desktop Logout Button */}
-              {authStatus && (
-                <li>
-                  <Logout />
-                </li>
-              )}
             </ul>
           </div>
 
@@ -104,12 +132,6 @@ function Header() {
                     </button>
                   </li>
                 ) : null
-              )}
-              {/* Mobile Logout Button */}
-              {authStatus && (
-                <li className="px-4 py-2">
-                  <Logout />
-                </li>
               )}
             </ul>
           </div>

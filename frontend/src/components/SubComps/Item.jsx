@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../../store/cartSlice";
 import { getProdutDetails } from "../../store/actions/productAction.js";
+import { toast } from "react-toastify";
 
 const SingleProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const [quantity, setQuantity] = useState(1);
+
+  const showAlert = () => {
+    toast.success("Product Added successfully!");
+  };
 
   const {
     product = {},
@@ -16,31 +23,33 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(getProdutDetails(id));
-    console.log("Product Data:", product);
   }, [dispatch, id]);
 
-  if (loading) {
-    return <p className="text-center text-blue-500">Loading...</p>;
-  }
+  const increaseQuantity = () => {
+    if (quantity < product.stock) {
+      setQuantity(quantity + 1);
+    }
+  };
 
-  if (error) {
-    return <p className="text-center text-red-500">{error}</p>;
-  }
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
-  if (!product || Object.keys(product).length === 0) {
+  if (loading) return <p className="text-center text-blue-500">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
+  if (!product || Object.keys(product).length === 0)
     return <p className="text-center text-red-500">Product not found!</p>;
-  }
 
-  // Ensure reviews is an array
   const reviewsArray = Array.isArray(product.reviews)
     ? product.reviews
     : JSON.parse(product.reviews || "[]");
 
-  console.log(" reviewsArray :-  ", reviewsArray);
-
   return (
     <div className="max-w-4xl mx-auto py-28">
       <div className="flex flex-col md:flex-row justify-between bg-white p-6 rounded-lg shadow-lg">
+        {/* Image */}
         <div className="w-full md:w-1/2">
           <img
             src={product.image}
@@ -49,6 +58,7 @@ const SingleProduct = () => {
           />
         </div>
 
+        {/* Details */}
         <div className="w-full md:w-1/2 md:pl-8">
           <h1 className="text-3xl font-semibold text-gray-800 mb-4">
             {product.name}
@@ -77,9 +87,38 @@ const SingleProduct = () => {
             {product.stock > 0 ? `In Stock (${product.stock})` : "Out of Stock"}
           </p>
           <p className="text-lg text-yellow-500">⭐ {product.rating} / 5</p>
+
+          {/* Quantity controls */}
+          {product.stock > 0 && (
+            <div className="flex items-center gap-2 mt-4 border w-max px-2 py-1 rounded-md shadow-sm">
+              <button
+                onClick={decreaseQuantity}
+                className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100 text-gray-700 hover:bg-[#f0f0f0] hover:scale-105 transition-all duration-200"
+              >
+                −
+              </button>
+              <input
+                readOnly
+                type="number"
+                value={quantity}
+                className="w-10 text-center bg-transparent font-medium"
+              />
+              <button
+                onClick={increaseQuantity}
+                className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100 text-gray-700 hover:bg-[#f0f0f0] hover:scale-105 transition-all duration-200"
+              >
+                +
+              </button>
+            </div>
+          )}
+
+          {/* Add to Cart */}
           {product.stock > 0 && (
             <button
-              onClick={() => dispatch(addCart(product))}
+              onClick={() => {
+                showAlert();
+                dispatch(addCart({ ...product, quantity }));
+              }}
               className="mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
             >
               Add to Cart
@@ -88,6 +127,7 @@ const SingleProduct = () => {
         </div>
       </div>
 
+      {/* Reviews */}
       <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Customer Reviews

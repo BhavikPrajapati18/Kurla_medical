@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../store/cartSlice";
 import { ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, quantity } = useSelector((state) => state.user);
+  const { cart, quantity } = useSelector((state) => state.cart);
   console.log(cart);
 
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleRemove = (id) => {
     dispatch(removeFromCart(id));
   };
 
   // Empty Cart
-  if (cart.length === 0) {
+  if (cart?.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
         <ShoppingCart size={80} className="text-gray-400" />
@@ -37,17 +44,24 @@ const Cart = () => {
         Total Items: {quantity}
       </div>
 
+      <div className="mt-10 text-xl font-semibold text-gray-800">
+        Total Amount: ₹{totalAmount.toFixed(2)}
+        <button className="bg-red-500 font-thin mx-2 text-white px-6 py-2 rounded-md">
+          Place your order
+        </button>
+      </div>
+
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {cart.map((product) => (
+        {cart?.map((product) => (
           <div
-            key={product.id}
+            key={product._id}
             className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition hover:shadow-lg"
           >
             {/* Product Image */}
             <div className="relative flex h-[240px] w-full items-center justify-center bg-[#f3f8fa] rounded-t-2xl p-4">
               <img
                 src={product.image}
-                alt={`${product.id} image`}
+                alt={`${product._id} image`}
                 className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110"
               />
               <span className="absolute left-2 top-2 rounded-md bg-[#FB991C] px-3 py-1 text-xs font-bold text-white shadow-md">
@@ -58,23 +72,21 @@ const Cart = () => {
             {/* Product Details */}
             <div className="p-6">
               <h3 className="mb-3 text-lg font-medium text-gray-800 line-clamp-2 group-hover:text-[#1C7690]">
-                {product.title}
+                {product.title}{" "}
+                <span className="text-sm text-gray-500">
+                  ×{product.quantity}
+                </span>
               </h3>
 
               <div className="mb-4 flex items-center gap-2">
                 <span className="text-xl font-bold text-[#FB991C]">
-                  ₹{product.prv_price}
+                  ₹{product.price}
                 </span>
-                {product.price && (
-                  <span className="text-sm font-medium text-gray-400 line-through">
-                    ₹{product.price}
-                  </span>
-                )}
               </div>
 
               {/* Remove Button */}
               <button
-                onClick={() => handleRemove(product.id)}
+                onClick={() => handleRemove(product._id)}
                 className="w-full rounded-md bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-red-600 transition duration-200"
               >
                 Remove from Cart
