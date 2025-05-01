@@ -25,15 +25,13 @@ Live Website: [Kurla Medical](https://kurla-medical.vercel.app/)
 ---
 
 ## **Technologies Used**  
-- **Frontend**: HTML, Tailwind CSS, React JS, Redux  
+- **Frontend**: HTML, Tailwind CSS, React JS, Redux
+- **Backend**: MongoDB, Node.js, Express.js, Cloudinary  
 - **Version Control**: Git and GitHub  
-- **Hosting**: Vercel  
+- **Hosting**: Vercel ( Shiffting to AWS )  
 
 ---
 
-## **Planned Enhancements**  
-- Backend integration for full-stack functionality.  
+## **Planned Enhancements**   
 - Mobile application development for Android and iOS platforms.  
-- Advanced search and filtering options.  
 - Home delivery services for customer convenience.
-- Search bar to quickly find medicines.
