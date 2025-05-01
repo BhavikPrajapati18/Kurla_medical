@@ -5,7 +5,7 @@ import {
   productDetailsReducer,
 } from "./reducers/productReducer.js";
 import { profileReducer, userReducer } from "./reducers/userReducer.js";
-import cartReducer from "./cartSlice.js";
+import { cartReducer } from "./reducers/cartReducer.js";
 
 const reducer = combineReducers({
   products: productReducer,

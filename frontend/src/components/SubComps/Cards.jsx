@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addCart } from "../../store/cartSlice";
+import { addItemsToCart } from "../../store/actions/cartAction.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BadgeInfo } from "lucide-react";
@@ -161,7 +161,10 @@ function Cards() {
                     <button
                       onClick={() => {
                         showAlert();
-                        dispatch(addCart({ ...product, quantity }));
+                        const cartdit = dispatch(
+                          addItemsToCart(product._id, quantity)
+                        );
+                        console.log(cartdit);
                       }}
                       className="w-full rounded-lg bg-[#1C7690] px-6 py-3 text-sm font-semibold text-white hover:bg-[#165a6c] transition duration-300 ease-in-out transform hover:scale-105"
                     >

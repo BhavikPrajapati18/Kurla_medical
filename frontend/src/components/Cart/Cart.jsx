@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../store/cartSlice";
+import {
+  removeItemsFromCart,
+  removeOneItemFromCart,
+} from "../../store/actions/cartAction.js";
 import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, quantity } = useSelector((state) => state.cart);
-  console.log(cart);
+  const { cartItems, quantity } = useSelector((state) => state.cart);
+  console.log(" Cart.jsx k cartItems ", cartItems);
 
-  const totalAmount = cart.reduce(
+  const totalAmount = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleRemove = (id) => {
-    dispatch(removeFromCart(id));
-  };
+  // const handleRemove = (id) => {
+  //   dispatch(removeItemsFromCart(id));
+  // };
 
   // Empty Cart
-  if (cart?.length === 0) {
+  if (cartItems?.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
         <ShoppingCart size={80} className="text-gray-400" />
@@ -52,7 +55,7 @@ const Cart = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {cart?.map((product) => (
+        {cartItems?.map((product) => (
           <div
             key={product._id}
             className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition hover:shadow-lg"
@@ -72,7 +75,7 @@ const Cart = () => {
             {/* Product Details */}
             <div className="p-6">
               <h3 className="mb-3 text-lg font-medium text-gray-800 line-clamp-2 group-hover:text-[#1C7690]">
-                {product.title}{" "}
+                {product.name}{" "}
                 <span className="text-sm text-gray-500">
                   ×{product.quantity}
                 </span>
@@ -86,10 +89,17 @@ const Cart = () => {
 
               {/* Remove Button */}
               <button
-                onClick={() => handleRemove(product._id)}
-                className="w-full rounded-md bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-red-600 transition duration-200"
+                onClick={() => dispatch(removeOneItemFromCart(product.product))}
+                className="bg-yellow-500 text-white px-2 py-1 rounded-md mr-2"
               >
-                Remove from Cart
+                -1 Quantity
+              </button>
+
+              <button
+                onClick={() => dispatch(removeItemsFromCart(product.product))}
+                className="bg-red-500 text-white px-2 py-1 rounded-md"
+              >
+                Remove All
               </button>
             </div>
           </div>
