@@ -7,6 +7,16 @@ import {
 import { profileReducer, userReducer } from "./reducers/userReducer.js";
 import { cartReducer } from "./reducers/cartReducer.js";
 
+const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
+const initialState = {
+  cart: {
+    cartItems: cartItemsFromLocalStorage,
+  },
+};
+
 const reducer = combineReducers({
   products: productReducer,
   productDetails: productDetailsReducer,
@@ -17,6 +27,7 @@ const reducer = combineReducers({
 
 const store = configureStore({
   reducer,
+  preloadedState: initialState,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
   devTools: true,
 });

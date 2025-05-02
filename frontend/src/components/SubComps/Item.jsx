@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { addCart } from "../../store/cartSlice";
+import { addItemsToCart } from "../../store/actions/cartAction.js";
 import { getProdutDetails } from "../../store/actions/productAction.js";
 import { toast } from "react-toastify";
 
@@ -26,15 +26,12 @@ const SingleProduct = () => {
   }, [dispatch, id]);
 
   const increaseQuantity = () => {
-    if (quantity < product.stock) {
-      setQuantity(quantity + 1);
-    }
+    if (product.stock <= quantity) return;
+    setQuantity((prev) => prev + 1);
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+    if (quantity > 1) setQuantity((prev) => prev - 1);
   };
 
   if (loading) return <p className="text-center text-blue-500">Loading...</p>;
@@ -117,7 +114,8 @@ const SingleProduct = () => {
             <button
               onClick={() => {
                 showAlert();
-                dispatch(addCart({ ...product, quantity }));
+                const cartdit = dispatch(addItemsToCart(product._id, quantity));
+                console.log(cartdit);
               }}
               className="mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
             >

@@ -21,6 +21,7 @@ import SingleProduct from "./pages/SingleProduct.jsx";
 import UserOption from "./pages/UserOption.jsx";
 import UpdateProfile from "./pages/UpdateProfile.jsx";
 import UpdatePassword from "./pages/UpdatePassword.jsx";
+import Shipping from "./pages/Shipping.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -95,6 +96,14 @@ const router = createBrowserRouter(
         element={
           <AuthLayout authentication>
             <UpdatePassword />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/shipping"
+        element={
+          <AuthLayout authentication>
+            <Shipping />
           </AuthLayout>
         }
       />

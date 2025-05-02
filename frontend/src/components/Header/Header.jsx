@@ -16,7 +16,6 @@ import {
   X,
   User,
 } from "lucide-react";
-import UserOption from "../../pages/UserOption";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

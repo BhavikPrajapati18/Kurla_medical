@@ -12,12 +12,12 @@ function Cards() {
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [quantities, setQuantities] = useState({});
 
   const showAlert = () => {
     toast.success("Product Added successfully!");
   };
 
-  // Redux: get products
   const {
     products = [],
     loading,
@@ -29,11 +29,32 @@ function Cards() {
     dispatch(getProduts());
   }, [dispatch]);
 
-  if (!products || !Array.isArray(products)) {
-    return <p>No products available</p>;
-  }
+  useEffect(() => {
+    if (products && Array.isArray(products)) {
+      const initialQuantities = {};
+      products.forEach((product) => {
+        initialQuantities[product._id] = 1;
+      });
+      setQuantities(initialQuantities);
+    }
+  }, [products]);
 
-  // Filtered products based on search & category
+  const increaseQuantity = (id, stock) => {
+    setQuantities((prev) => {
+      const current = prev[id] || 1;
+      if (current >= stock) return prev;
+      return { ...prev, [id]: current + 1 };
+    });
+  };
+
+  const decreaseQuantity = (id) => {
+    setQuantities((prev) => {
+      const current = prev[id] || 1;
+      if (current <= 1) return prev;
+      return { ...prev, [id]: current - 1 };
+    });
+  };
+
   const filterProducts = products.filter((item) => {
     const matchesSearch = item.name
       .toLowerCase()
@@ -41,7 +62,6 @@ function Cards() {
     const matchesCategory = selectedCategory
       ? item.category.toLowerCase() === selectedCategory.toLowerCase()
       : true;
-
     return matchesSearch && matchesCategory;
   });
 
@@ -74,16 +94,7 @@ function Cards() {
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-8 px-4">
         {filterProducts.length > 0 ? (
           filterProducts.map((product) => {
-            const [quantity, setQuantity] = useState(1);
-
-            const increaseQuantity = () => {
-              if (product.stock <= quantity) return;
-              setQuantity((prev) => prev + 1);
-            };
-
-            const decreaseQuantity = () => {
-              if (quantity > 1) setQuantity((prev) => prev - 1);
-            };
+            const quantity = quantities[product._id] || 1;
 
             return (
               <div
@@ -124,7 +135,6 @@ function Cards() {
                   {/* Buttons */}
                   <div className="flex flex-col gap-3 mt-4">
                     <div className="flex items-center justify-between gap-4">
-                      {/* View */}
                       <button
                         onClick={() => navigate(`/product/${product._id}`)}
                         className="flex items-center justify-center rounded-lg bg-blue-200 px-4 py-2 text-sm font-medium text-blue-800 hover:bg-blue-300 transition duration-300 ease-in-out transform hover:scale-105"
@@ -132,10 +142,9 @@ function Cards() {
                         <BadgeInfo className="mr-1" size={16} /> View
                       </button>
 
-                      {/* Quantity Controls */}
                       <div className="flex items-center gap-2 rounded-md border border-gray-300 px-2 py-1 bg-white shadow-sm">
                         <button
-                          onClick={decreaseQuantity}
+                          onClick={() => decreaseQuantity(product._id)}
                           className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100 text-gray-700 hover:bg-[#f0f0f0] hover:scale-105 transition-all duration-200"
                           aria-label="Decrease quantity"
                         >
@@ -148,7 +157,9 @@ function Cards() {
                           className="w-10 text-center border-none bg-transparent text-base font-medium text-gray-800 focus:outline-none"
                         />
                         <button
-                          onClick={increaseQuantity}
+                          onClick={() =>
+                            increaseQuantity(product._id, product.stock)
+                          }
                           className="w-8 h-8 flex items-center justify-center rounded-md bg-gray-100 text-gray-700 hover:bg-[#f0f0f0] hover:scale-105 transition-all duration-200"
                           aria-label="Increase quantity"
                         >
@@ -161,10 +172,7 @@ function Cards() {
                     <button
                       onClick={() => {
                         showAlert();
-                        const cartdit = dispatch(
-                          addItemsToCart(product._id, quantity)
-                        );
-                        console.log(cartdit);
+                        dispatch(addItemsToCart(product._id, quantity));
                       }}
                       className="w-full rounded-lg bg-[#1C7690] px-6 py-3 text-sm font-semibold text-white hover:bg-[#165a6c] transition duration-300 ease-in-out transform hover:scale-105"
                     >
