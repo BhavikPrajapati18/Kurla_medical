@@ -5,9 +5,9 @@ function Shipping() {
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
-    area: "", // For the specific area name
+    area: "",
     postalCode: "",
-    country: "India", // Pre-selecting India as the country
+    country: "India",
   });
 
   const handleInputChange = (e) => {
