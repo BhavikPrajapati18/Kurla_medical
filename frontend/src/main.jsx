@@ -22,6 +22,8 @@ import UserOption from "./pages/UserOption.jsx";
 import UpdateProfile from "./pages/UpdateProfile.jsx";
 import UpdatePassword from "./pages/UpdatePassword.jsx";
 import Shipping from "./pages/Shipping.jsx";
+import Confirm from "./pages/Confirm.jsx";
+import Payment from "./pages/Payment.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -104,6 +106,22 @@ const router = createBrowserRouter(
         element={
           <AuthLayout authentication>
             <Shipping />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/confirm"
+        element={
+          <AuthLayout authentication>
+            <Confirm />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/payment"
+        element={
+          <AuthLayout authentication>
+            <Payment />
           </AuthLayout>
         }
       />
