@@ -1,6 +1,6 @@
 # **Kurla Medical**  
 ## **Online Pharmacy Store**  
-
+ 
 Welcome to **Kurla Medical**, an online pharmacy store where customers can browse and purchase medicines, medical devices, and other healthcare products conveniently. Home delivery services are available for all orders.  
 
 ---
